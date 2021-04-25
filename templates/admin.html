@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Les différents contenus: </p>
+    {% for data in test %}
+        <div>
+            <p>{{data.id}}</p>
+            <p>{{data.content}}</p>
+            <p>{{data.url}}</p>
+            <form action="" method="post">
+                <input type="hidden" name="id" value={{data.id}}>
+                <button type="submit" name="btn" value="delete">delete</button>
+            </form>
+            <a href="/admin/{{data.url}}">Edit the content</a>
+        </div>
+    {% endfor %}
+    <form action="" method="post">
+        <textarea name="content" cols="30" rows="10"></textarea>
+        <input type="submit" name="btn" value="create">
+    </form>
+</body>
+</html>
