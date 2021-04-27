@@ -7,10 +7,37 @@
     <title>Document</title>
 </head>
 <body>
+    <h1>Paste as Markdown Only</h1>
     <form action="" method="post">
         <textarea name="content" id="" cols="30" rows="10"></textarea>
         <input type="submit" value="Envoyer">
     </form>
-    <p>Mon url : {{url}}</p>
+    {% if url %}
+        <p>Mon url : <a href="/articles/{{url}}">/articles/{{url}}</a></p>
+        <p>The pastedown: {{paste}}</p>
+    {% endif %}
 </body>
+<style>
+    body {
+        background-color: aquamarine;
+    }
+    p {
+        font-size: 1.5rem;
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    form input {
+        color: white;
+        background-color: black;
+        border: 1px solid rgb(255, 255, 255);
+        padding: 0.4rem 1rem;
+        border-radius: 1rem;
+        outline: none;
+        margin-top: 1rem;
+    }
+    
+</style>
 </html>

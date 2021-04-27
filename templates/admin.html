@@ -10,8 +10,9 @@
     <p>Les différents contenus: </p>
     {% for data in test %}
         <div>
-            <p>{{data.id}}</p>
-            <p>{{data.content}}</p>
+            <p>Number #{{data.id}}</p>
+            <p>Original content : {{data.content}}</p>
+            <p>Pastedown : {{html}} </p>
             <p>{{data.url}}</p>
             <form action="" method="post">
                 <input type="hidden" name="id" value={{data.id}}>
@@ -25,4 +26,27 @@
         <input type="submit" name="btn" value="create">
     </form>
 </body>
+<style>
+    body {
+        background-color: aquamarine;
+    }
+    p {
+        font-size: 1.5rem;
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    form input {
+        color: white;
+        background-color: black;
+        border: 1px solid rgb(255, 255, 255);
+        padding: 0.4rem 1rem;
+        border-radius: 1rem;
+        outline: none;
+        margin-top: 1rem;
+    }
+    
+</style>
 </html>

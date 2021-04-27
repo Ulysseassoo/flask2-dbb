@@ -39,7 +39,7 @@ def getAllData():
             db.session.delete(data)
             db.session.commit()
             datas = myDB.query.all()
-            return render_template("admin.html", test=datas)
+            return render_template("admin.html", test=datas, html=html)
     return render_template("admin.html", test=datas)
 
 
@@ -59,7 +59,9 @@ def adminData(url):
 @app.route("/articles/<url>")
 def getData(url):
     example = myDB.query.filter_by(url=url)
-    return render_template("content.html", test=example)
+    for data in example:
+        paste = markdown.markdown(data.content)
+    return render_template("content.html", test=example, paste=paste)
 
 
 @app.route("/articles/create", methods=["GET", "POST"])
@@ -70,6 +72,10 @@ def insertData():
         data = request.json
         url = shortuuid.uuid()
         newData = myDB(url=url, content=request.form["content"])
+        html = markdown.markdown(request.form["content"])
         db.session.add(newData)
         db.session.commit()
-        return render_template("form.html", url=url)
+        return render_template("form.html", url=url, paste=html)
+
+
+# def test_markdown():
